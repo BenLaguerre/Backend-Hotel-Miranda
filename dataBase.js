@@ -1,13 +1,19 @@
 //-----------------Connect to mySQL DataBASE-----------------------//
-var mysql = require('mysql')
-var connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'password',
-  database: 'MirandaDB'
-})
+const mongoose = require('mongoose');
 
-connection.connect()
+main().catch(err => console.log(err));
 
-module.exports = connection;
+async function main() {
+  await mongoose.connect('mongodb://localhost:27017/test');
+  const bookingSchema = new mongoose.Schema({
+    name: String
+  });
+  const Booking = mongoose.model('Booking', bookingSchema);
+  const ben = new Booking ({ name: 'Ben'});
+  await ben.save();
+
+  const bookings = await Booking.find();
+console.log(bookings);
+}
+
 

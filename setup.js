@@ -1,6 +1,19 @@
 //This file was used to fill the tables of the dataBase.
 
-var connection = require('./dataBase');
+import mongoose from 'mongoose';
+const { Schema } = mongoose;
+
+const roomsSchema = new Schema({
+  name:  String, // String is shorthand for {type: String}
+  room_type: String,
+  service: String,
+  price: Number,
+  discount_price: Number,
+  state: Boolean,
+  photo: String
+});
+
+const Rooms = mongoose.model('Rooms', roomsSchema)
 
 //------------------Fill Tables from Json files------------------//
 
