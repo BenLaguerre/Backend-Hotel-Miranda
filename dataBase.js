@@ -4,7 +4,8 @@ var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'password',
-  database: 'MirandaDB'
+  database: 'MirandaDB',
+  port: 3306
 })
 
 connection.connect()

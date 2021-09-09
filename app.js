@@ -9,15 +9,16 @@ var flash = require('connect-flash');//
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const mainRouter = require('./routes/routelist');
+//const mainRouter = require('./routes/routelist');
 
 var app = express();
-
 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+app.set('port', process.env.PORT || 3000);
 
 app.use(logger('dev')); 
 app.use(express.json());
@@ -30,7 +31,7 @@ app.use(bodyParser.json())//
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/', mainRouter);
+//app.use('/', mainRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -49,3 +50,7 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+app.listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
+  });

@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/2635d063-5aed-4f5f-add6-873b459523da/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/BackEndHotelMiranda",
+    "appService.deploySubpath": "."
+}
