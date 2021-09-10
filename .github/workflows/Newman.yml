@@ -1,4 +1,10 @@
 # https://github.com/marketplace/actions/newman-action
+on:
+  push:
+    branches:
+      - Azure
+  workflow_dispatch:
+  
   newman:
     runs-on: ubuntu-latest
     needs: deploy
