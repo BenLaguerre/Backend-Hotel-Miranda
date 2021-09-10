@@ -6,8 +6,9 @@ on:
       - Azure
 
 jobs:
-  - name: Run a one-line script
-    run: echo Hello, world!
+  echo:
+    - name: Run a one-line script
+      run: echo Hello, world!
   newman:
     runs-on: ubuntu-latest
     needs: deploy
