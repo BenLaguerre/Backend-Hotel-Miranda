@@ -29,7 +29,7 @@ jobs:
         with:
           # The target URL
           # Required: true if custom-config is not set
-          url: https://hotelmirandaappservice.azurewebsites.net/
+          url: https://backendhotelmiranda.azurewebsites.net/
                   
           # The request method, basically it's one of GET|POST|PUT|PATCH
           # Default is GET 
