@@ -34,9 +34,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/users",
+					"raw": "https://backendhotelmiranda.azurewebsites.net/users",
 					"host": [
-						"localhost"
+						"https://backendhotelmiranda.azurewebsites.net"
 					],
 					"port": "3000",
 					"path": [
