@@ -56,12 +56,4 @@ jobs:
         package: .
         
         
- # https://github.com/marketplace/actions/newman-action
-  newman:
-    runs-on: ubuntu-latest
-    needs: deploy
-    steps:
-      - uses: actions/checkout@master
-      - uses: matt-ball/newman-action@master
-        with:          
-          collection: Restricted Backed.postman_collection.json    
+ 
