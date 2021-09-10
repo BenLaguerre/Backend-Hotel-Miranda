@@ -34,9 +34,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/users",
+					"raw": "https://backendhotelmiranda.azurewebsites.net/users",
 					"host": [
-						"{{host}}"
+						"https://backendhotelmiranda.azurewebsites.net/"
 					],
 					"path": [
 						"users"
@@ -65,9 +65,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}",
+					"raw": "https://backendhotelmiranda.azurewebsites.net/",
 					"host": [
-						"{{host}}"
+						"https://backendhotelmiranda.azurewebsites.net/"
 					]
 				}
 			},
