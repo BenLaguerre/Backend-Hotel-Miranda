@@ -1,101 +1,77 @@
 //This file was used to fill the tables of the dataBase.
 
-import mongoose from 'mongoose';
-const { Schema } = mongoose;
-
-const roomsSchema = new Schema({
-  name:  String, // String is shorthand for {type: String}
-  room_type: String,
-  service: String,
-  price: Number,
-  discount_price: Number,
-  state: Boolean,
-  photo: String
-});
-
-const Rooms = mongoose.model('Rooms', roomsSchema)
-
-//------------------Fill Tables from Json files------------------//
+const {Room, Booking, Concierge, Review}  = require('./model');
 
 var conciergesData = require('./json/concierges.json');
 var bookingsData = require('./json/bookings.json');
 var reviewsData = require('./json/reviews.json');
 var roomsData = require('./json/rooms.json');
 
-//------------------Table Rooms----------------------------------//
-/*for (let room of roomsData) {
-  const roomForQuery = { 
-    name: room.name,
-    room_type: room.room_type,
-    service: room.service,
-    price: room.price,
-    discount_price: room.discount_price,
-    state: room.state,
-    photo: room.photo}
+booking();
 
-  const query = connection.query('INSERT INTO rooms SET ?', roomForQuery, function(err, results, fields) {
-      if (err) {
-          console.error(err);
-      } else {
-          console.log('Done', room.name);
-      }
-  });
-}*/
+//Collection room
+function room () {
 
-//------------------Table Bookings----------------------------------//
-
-/*for (let booking of bookingsData) {
-  const bookingForQuery = {
-    name: booking.name,
-    booking_date: booking.booking_date,
-    start_date: booking.start_date,
-    exit_date: booking.exit_date,
-    message: booking.message,
-    room_id: Math.ceil(Math.random() * 20)
+  for (let room of roomsData) {
+    const filer = new Room ({ 
+      id: room.id,
+      name: room.name,
+      room_type: room.room_type,
+      service: room.service,
+      price: room.price,
+      discount_price: room.discount_price,
+      state: room.state,
+      photo: room.photo
+    });
+     filer.save();
   }
-  const query = connection.query('INSERT INTO bookings SET ?', bookingForQuery, function(err, results, fields) {
-      if (err) {
-          console.error(err);
-      } else {
-          console.log('Done', booking.name);
-      }
-  });
-}*/
+}
 
-//------------------Table Concierges----------------------------------//
-/*
-for (let concierge of conciergesData) {
-  const conciergeForQuery = {
-    name: concierge.name,
-    join_date: concierge.join_date,
-    job_description: concierge.job_description,
-    phone_number: concierge.phone_number,
-    state: concierge.state,
-    photo: concierge.photo
-  }
-  const query = connection.query('INSERT INTO concierges SET ?', conciergeForQuery, function(err, results, fields) {
-      if (err) {
-          console.error(err);
-      } else {
-          console.log('Done', concierge.name);
-      }
-  });
-}*/
+//Collection booking
+function booking () {
 
-//------------------Table Reviews----------------------------------//
-/*
-for (let review of reviewsData) {
-  const reviewForQuery = {
-    name: review.name,
-    date: review.date,
-    comment:  review.stars + review.comment,
-    action: review.action
+  for (let booking of bookingsData) {
+    const filer = new Booking ({ 
+      id: booking.id,
+      name: booking.name,
+      booking_date: booking.booking_date,
+      start_date: booking.start_date,
+      exit_date: booking.exit_date,
+      message: booking.message,
+      room_id: Math.ceil(Math.random() * 20)
+    });
+     filer.save();
   }
-  const query = connection.query('INSERT INTO reviews SET ?', reviewForQuery, function(err, results, fields) {
-      if (err) {
-          console.error(err);
-      } else {
-          console.log('Done', review.name);
-      }
-  });
-}*/
+}
+
+//Collection concierge
+ function concierge () {
+
+  for (let concierge of conciergesData) {
+    const filer = new Concierge ({ 
+      id: concierge.id,
+      name: concierge.name,
+      join_date: concierge.join_date,
+      job_description: concierge.job_description,
+      phone_number: concierge.phone_number,
+      state: concierge.state,
+      photo: concierge.photo
+    });
+     filer.save();
+  }
+}
+
+//Collection review
+function review () {
+
+  for (let review of reviewsData) {
+    const filer = new Review ({ 
+      id: review.id,
+      name: review.name,
+      date: review.date,
+      comment: review.comment
+    });
+   filer.save();
+  }
+}
+

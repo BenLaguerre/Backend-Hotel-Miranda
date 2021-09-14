@@ -1,6 +1,6 @@
-var connectionDB = require('../dataBase');
+const { Review } = require('../model');
 
-const reviewForQuery = {
+const newReview = {
   name: '',
   date: '',
   comment:  '',
@@ -8,29 +8,25 @@ const reviewForQuery = {
 }
 
 exports.create_review = function(req, res) {
-	connectionDB.query('INSERT INTO reviews SET ?', reviewForQuery, function (err, rows, fields) {
-		if (err) {
-			console.error(err);
-		} else {
-				console.log('Done', reviewForQuery.name);
-		}
+	var filer = new Review ({
+		name: newReview.name,
+		date: newReview.date,
+		comment: newReview.comment,
+		action: newReview.action,
 	})
 };
 
-exports.reviews_list = function(req, res) {
-    connectionDB.query('SELECT * FROM reviews', function (err, rows, fields) {
-        if (err) throw err
-        return res.json(rows)
-      })
+exports.reviews_list = async function(req, res) {
+	const review = await Review.find();
+	return res.json(review)
 };
 
-exports.specific_review = function(req, res) {
-    connectionDB.query(`SELECT * FROM reviews WHERE id = ${req.params.id}`, function (err, rows, fields) {
-        if (err) throw err
-        return res.json(rows)
-      })
+exports.specific_review = async function(req, res) {
+  const specificReview = await Review.find({id :req.params.id});
+  return res.json(specificReview)
 };
 
+/*
 exports.update_review = function(req, res) {
   connectionDB.query('UPDATE reviews SET ?', roomForQuery, function (err, rows, fields) {
     if (err) {
@@ -49,4 +45,4 @@ exports.delete_review = function(req, res) {
 				console.log('Done', reviewForQuery.name);
 		}
 	})
-}
+}*/
