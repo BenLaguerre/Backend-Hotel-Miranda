@@ -10,9 +10,8 @@ var flash = require('connect-flash');//
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const mainRouter = require('./routes/routelist');
-
+var cors = require('cors');
 var app = express();
-
 
 
 // view engine setup
@@ -27,6 +26,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash()); //
 app.use(bodyParser.urlencoded({ extended: false }))//
 app.use(bodyParser.json())//
+
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true, 
+  origin: true
+}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -49,3 +54,7 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+app.listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
+  });
