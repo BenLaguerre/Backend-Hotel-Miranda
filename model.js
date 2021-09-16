@@ -13,11 +13,9 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 const roomSchema = new Schema({
     id: Number,
     name:  String, 
-    room_type: String,
-    service: String,
+    bed: String,
     price: Number,
-    discount_price: Number,
-    state: Boolean,
+    status: Boolean,
     photo: String
 });
   

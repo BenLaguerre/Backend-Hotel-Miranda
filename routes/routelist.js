@@ -53,7 +53,7 @@ router.get('/login', function(req, res, next) {
 });
 
 router.post("/login", (req, res) => {
-  let { username, password } = req.body;
+  let {  password ,username } = req.body;
   if (username === "admin") {
       if (password === "admin") {
         const opts = {}

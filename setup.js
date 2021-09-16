@@ -7,7 +7,7 @@ var bookingsData = require('./json/bookings.json');
 var reviewsData = require('./json/reviews.json');
 var roomsData = require('./json/rooms.json');
 
-booking();
+room();
 
 //Collection room
 function room () {
@@ -16,11 +16,9 @@ function room () {
     const filer = new Room ({ 
       id: room.id,
       name: room.name,
-      room_type: room.room_type,
-      service: room.service,
+      bed: room.bed,
       price: room.price,
-      discount_price: room.discount_price,
-      state: room.state,
+      status: room.status,
       photo: room.photo
     });
      filer.save();
