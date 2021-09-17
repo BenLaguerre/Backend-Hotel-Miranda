@@ -1,13 +1,13 @@
 //This file was used to fill the tables of the dataBase.
 
-const {Room, Booking, Concierge, Review}  = require('./model');
+const {Room, Booking, Concierge, Review, User}  = require('./model');
 
 var conciergesData = require('./json/concierges.json');
 var bookingsData = require('./json/bookings.json');
 var reviewsData = require('./json/reviews.json');
 var roomsData = require('./json/rooms.json');
 
-room();
+user();
 
 //Collection room
 function room () {
@@ -73,3 +73,21 @@ function review () {
   }
 }
 
+//Collection User
+function user (){
+  const admin = new User ({
+    username: 'admin',
+    password: 'admin'
+  })
+  admin.save();
+  const user1 = new User ({
+    username: 'user1',
+    password: 'user1'
+  })
+  user1.save();
+  const user2 = new User ({
+    username: 'user2',
+    password: 'user2'
+  })
+  user2.save();
+}

@@ -2,7 +2,7 @@ var express = require('express');
 const app = express();
 var router = express.Router();
 const bodyParser = require("body-parser");
-
+const { User } = require('../model');
 //jwt Auth
 const jwt = require("jsonwebtoken");
 
@@ -54,19 +54,22 @@ router.get('/login', function(req, res, next) {
 
 router.post("/login", (req, res) => {
   let {  password ,username } = req.body;
-  if (username === "admin") {
-      if (password === "admin") {
-        const opts = {}
+  User.findOne({'username' : username})
+    .then(function (result){
+      if (result !== null){
+        if (password === result.password) {
+          const opts = {}
           opts.expiresIn = 2592000;  //token expires in 1 month
           const secret = "SECRET_KEY" //normally stored in process.env.secret
           const token = jwt.sign({ username }, secret, opts);
           return res.status(200).json({
-              message: "Auth Passed",
-              token
+            message: "Auth Passed",
+            token
           })
-      }
-  }
-  return res.status(401).json({ message: "Auth Failed" })
+        }
+    }
+    return res.status(401).json({ message: "Auth Failed" })
+  })
 });
 
 

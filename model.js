@@ -57,4 +57,12 @@ const reviewSchema = new Schema({
   
 var Review = mongoose.model('Review', reviewSchema)
 
-module.exports = {Room, Booking, Concierge, Review};
+//Create collcetion users
+const userSchema = new Schema({
+  username: String,
+  password: String
+})
+
+var User = mongoose.model('User', userSchema)
+
+module.exports = {Room, Booking, Concierge, Review, User};
