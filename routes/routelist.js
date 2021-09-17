@@ -3,12 +3,16 @@ const app = express();
 var router = express.Router();
 const bodyParser = require("body-parser");
 const { User } = require('../model');
+
 //jwt Auth
 const jwt = require("jsonwebtoken");
-
 var passport = require('passport')
 const jwtStrategy  = require("../strategies/jwt")
 passport.use(jwtStrategy);
+
+//crypto setup
+var crypto = require('crypto');
+const sha256 = item => crypto.createHash('sha256').update(item, 'utf8').digest('hex');
 
 var rooms_controller = require('../controllers/roomsController');
 var bookings_controller = require('../controllers/bookingsController');
@@ -57,7 +61,7 @@ router.post("/login", (req, res) => {
   User.findOne({'username' : username})
     .then(function (result){
       if (result !== null){
-        if (password === result.password) {
+        if (sha256(password) === sha256(result.password)) {
           const opts = {}
           opts.expiresIn = 2592000;  //token expires in 1 month
           const secret = "SECRET_KEY" //normally stored in process.env.secret
