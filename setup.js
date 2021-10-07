@@ -7,7 +7,6 @@ var bookingsData = require('./json/bookings.json');
 var reviewsData = require('./json/reviews.json');
 var roomsData = require('./json/rooms.json');
 
-user();
 
 //Collection room
 function room () {
