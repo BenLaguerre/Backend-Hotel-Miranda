@@ -1,7 +1,9 @@
 const  mongoose = require("mongoose");
+const dotenv = require("dotenv")
+dotenv.config()
 
 //Assign MongoDB connection string to Uri and declare options settings
-var  uri = "mongodb+srv://administrator:CavOwYI5W@mirandadb.scvef.mongodb.net/MirandaDB?retryWrites=true&w=majority"
+var  uri = `mongodb+srv://administrator:${process.env.DB_PASSWORD}@mirandadb.scvef.mongodb.net/MirandaDB?retryWrites=true&w=majority`
 
 // Declare a variable named option and assign optional settings
 const  options = {

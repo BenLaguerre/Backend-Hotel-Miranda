@@ -1,4 +1,6 @@
 require("./dbconnection");
+const dotenv = require("dotenv")
+dotenv.config()
 
 var createError = require('http-errors');
 var express = require('express');
