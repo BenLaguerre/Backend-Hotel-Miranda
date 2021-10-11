@@ -1,12 +1,5 @@
-var mongoose = require('mongoose');
-const { Schema } = mongoose;
-
-var mongoDB = 'mongodb://127.0.0.1/mirandadb';
-mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
-
-var db = mongoose.connection;
-
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+const  mongoose = require("mongoose");
+const { Schema } = require("mongoose");
 
 
 //Create collection room
