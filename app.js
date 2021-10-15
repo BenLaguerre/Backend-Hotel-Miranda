@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({ extended: false }))//
 app.use(bodyParser.json())//
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://mirandadash.netlify.app',
   credentials: true, 
   origin: true
 }));
