@@ -1,6 +1,7 @@
 const  mongoose = require("mongoose");
 const { Schema } = require("mongoose");
-
+const autoIncrement = require('mongoose-auto-increment');
+autoIncrement.initialize(mongoose);
 
 //Create collection room
 const roomSchema = new Schema({
@@ -11,7 +12,8 @@ const roomSchema = new Schema({
     status: Boolean,
     photo: String
 });
-  
+
+roomSchema.plugin(autoIncrement.plugin, { model: 'Room', field: 'id', startAt: 21 });
 var Room = mongoose.model('Room', roomSchema)
 
 //Create collection booking
@@ -25,6 +27,7 @@ const bookingSchema = new Schema({
     room_id: Number
   });
   
+bookingSchema.plugin(autoIncrement.plugin, { model: 'Schema', field: 'id', startAt: 41 });
 var Booking = mongoose.model('Booking', bookingSchema)
 
 //Create collection concierge
@@ -37,7 +40,8 @@ const conciergeSchema = new Schema({
     state: Number,
     photo: String
   });
-  
+
+conciergeSchema.plugin(autoIncrement.plugin, { model: 'Concierge', field: 'id', startAt: 21 });
 var Concierge = mongoose.model('Concierge', conciergeSchema)
 
 //Create collection reviews
@@ -47,7 +51,8 @@ const reviewSchema = new Schema({
     date: Date,
     comment: String
   });
-  
+ 
+reviewSchema.plugin(autoIncrement.plugin, { model: 'Review', field: 'id', startAt: 21 });
 var Review = mongoose.model('Review', reviewSchema)
 
 //Create collcetion users

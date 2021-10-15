@@ -1,27 +1,33 @@
 const { Room } = require('../model');
 
-const newRoom = { 
-  name: '',
-  room_type: '',
-  service: '',
-  price: '',
-  discount_price: '',
-  state: '',
-  photo: ''
-}
-
 //Create
 exports.create_room = function(req, res) {
-	var filer = new Room ({
-		name: newRoom.name,
-		room_type: newRoom.room_type,
-		service: newRoom.service,
-		price: newRoom.price,
-		discount_price: newRoom.discount_price,
-		state: newRoom.state,
-		photo: newRoom.photo
-	})
+	if (!req.body.name) {
+    res.status(400).send({ message: "Content can not be empty!" });
+    return;
+  }
+	
+	var room = new Room ({
+		name: req.body.name,
+		bed: req.body.bed,
+		price: req.body.price,
+		status: true
+	});
+
+  // Save Room in the database
+  room
+    .save(room)
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the Room."
+      });
+    });
 };
+	
 
 //Read all
 exports.rooms_list = async function(req, res) {

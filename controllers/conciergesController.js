@@ -1,23 +1,31 @@
 const { Concierge } = require('../model');
 
-const newConcierge = {
-  name: '',
-  join_date: '',
-  job_description: '',
-  phone_number: '',
-  state: '',
-  photo: ''
-}
-
 exports.create_concierge = function(req, res) {
-  var filer = new Review ({
-    name: newConcierge.name,
-		join_date: newConcierge.join_date,
-		job_description: newConcierge.job_description,
-		phone_number: newConcierge.phone_number,
-		state: newConcierge.state,
-		photo: newConcierge.photo,
+  if (!req.body.name) {
+    res.status(400).send({ message: "Content can not be empty!" });
+    return;
+  }
+
+  var concierge = new Review ({
+    name: req.body.name,
+		join_date: req.body.join_date,
+		job_description: req.body.job_description,
+		phone_number: req.body.phone_number,
+		state: 1
   })
+
+  // Save Concierge in the database
+  concierge
+    .save(concierge)
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the Concierge."
+      });
+    });
 };
 
 exports.concierges_list = async function(req, res) {

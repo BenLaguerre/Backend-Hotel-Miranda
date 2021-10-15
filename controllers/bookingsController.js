@@ -1,23 +1,31 @@
 const { Booking } = require('../model');
 
-const newBooking = {
-  name: '',
-  booking_date: '',
-  start_date: '',
-  exit_date: '',
-  message: '',
-  room_id: ' '
-}
-
 exports.create_booking = function(req, res) {
-	var filer = new Booking ({
-    name: newBooking.name,
-		booking_date: newBooking.booking_date,
-		start_date: newBooking.start_date,
-		exit_date: newBooking.exit_date,
-		message: newBooking.message,
-		room_id: newBooking.room_id,
+  if (!req.body.name) {
+    res.status(400).send({ message: "Content can not be empty!" });
+    return;
+  }
+
+	var booking = new Booking ({
+    name: req.body.name,
+		booking_date: req.body.booking_date,
+		start_date: req.body.start_date,
+		exit_date: req.body.exit_date,
+		message: req.body.message,
+		room_id: req.body.room_id
   })
+
+  booking
+    .save(booking)
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the Booking."
+      });
+    });
 };
 
 exports.bookings_list = async function(req, res) {
