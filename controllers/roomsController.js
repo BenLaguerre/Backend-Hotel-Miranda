@@ -2,7 +2,10 @@ const { Room } = require('../model');
 
 //Create
 exports.create_room = function(req, res) {
-
+	if (!req.body.name) {
+    res.status(400).send({ message: "Content can not be empty!" });
+    return;
+  }
 	var room = new Room ({
 		name: req.body.name,
 		bed: req.body.bed,
@@ -15,6 +18,7 @@ exports.create_room = function(req, res) {
     .save(room)
     .then(data => {
       res.send(data);
+			
     })
     .catch(err => {
       res.status(500).send({

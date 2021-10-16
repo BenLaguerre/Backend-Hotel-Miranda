@@ -1,7 +1,6 @@
 var express = require('express');
 const app = express();
 var router = express.Router();
-const bodyParser = require("body-parser");
 const { User } = require('../model');
 
 //jwt Auth
@@ -19,8 +18,7 @@ var bookings_controller = require('../controllers/bookingsController');
 var concierges_controller = require('../controllers/conciergesController');
 var reviews_controller = require('../controllers/reviewsController');
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+
 
 //Rooms routes
 router.post('/rooms', passport.authenticate('jwt', { session: false }), rooms_controller.create_room);//Create New Room
@@ -75,6 +73,5 @@ router.post("/login", (req, res) => {
     return res.status(401).json({ message: "Auth Failed" })
   })
 });
-
 
 module.exports = router;
