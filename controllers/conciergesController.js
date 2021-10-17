@@ -6,7 +6,7 @@ exports.create_concierge = function(req, res) {
     return;
   }
 
-  var concierge = new Review ({
+  var concierge = new Concierge ({
     name: req.body.name,
 		join_date: req.body.join_date,
 		job_description: req.body.job_description,
